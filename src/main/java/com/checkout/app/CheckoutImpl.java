@@ -29,7 +29,7 @@ public class CheckoutImpl implements Checkout {
     }
 
     @Override
-    public int calculate(ShoppingItem[] basket) {
+    public int calculateTotalPrice(ShoppingItem[] basket) {
         log.info("Calculating total price for {}", Arrays.toString(basket));
 
         // map of each item and number of occurrences

@@ -8,5 +8,5 @@ interface Checkout {
      * @param basket array of items
      * @return total price in pence
      */
-    int calculate(ShoppingItem[] basket);
+    int calculateTotalPrice(ShoppingItem[] basket);
 }

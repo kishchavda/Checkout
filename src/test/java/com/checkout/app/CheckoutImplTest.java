@@ -34,7 +34,7 @@ public class CheckoutImplTest {
         ShoppingItem[] shoppingItems = {APPLE};
         ShoppingItemMetaData metaData = new ShoppingItemMetaData(35, new NoOfferCalculator());
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(APPLE)).thenReturn(metaData);
-        int total = checkout.calculate(shoppingItems);
+        int total = checkout.calculateTotalPrice(shoppingItems);
         assertThat(total, is(35));
     }
 
@@ -43,7 +43,7 @@ public class CheckoutImplTest {
         ShoppingItem[] shoppingItems = {APPLE, APPLE};
         ShoppingItemMetaData metaData = new ShoppingItemMetaData(35, new NoOfferCalculator());
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(APPLE)).thenReturn(metaData);
-        int total = checkout.calculate(shoppingItems);
+        int total = checkout.calculateTotalPrice(shoppingItems);
         assertThat(total, is(70));
     }
 
@@ -58,7 +58,7 @@ public class CheckoutImplTest {
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(BANANA)).thenReturn(bananaMetaData);
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(MELON)).thenReturn(melonMetaData);
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(LIME)).thenReturn(limeMetaData);
-        int total = checkout.calculate(shoppingItems);
+        int total = checkout.calculateTotalPrice(shoppingItems);
         assertThat(total, is(210));
     }
 
@@ -67,7 +67,7 @@ public class CheckoutImplTest {
         ShoppingItem[] shoppingItems = {BANANA, BANANA, BANANA, BANANA, BANANA, BANANA};
         ShoppingItemMetaData bananaMetaData = new ShoppingItemMetaData(20, new ThreeForTwoCalculator());
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(BANANA)).thenReturn(bananaMetaData);
-        int total = checkout.calculate(shoppingItems);
+        int total = checkout.calculateTotalPrice(shoppingItems);
         assertThat(total, is(80));
     }
 
@@ -76,14 +76,14 @@ public class CheckoutImplTest {
         ShoppingItem[] shoppingItems = {APPLE, APPLE, APPLE, APPLE};
         ShoppingItemMetaData bananaMetaData = new ShoppingItemMetaData(40, new BogofCalculator());
         when(shoppingItemMetaDataProvider.getShoppingItemMetaData(APPLE)).thenReturn(bananaMetaData);
-        int total = checkout.calculate(shoppingItems);
+        int total = checkout.calculateTotalPrice(shoppingItems);
         assertThat(total, is(80));
     }
 
     @Test
     public void testEmptyBasket() {
         ShoppingItem[] basket = {};
-        int total = checkout.calculate(basket);
+        int total = checkout.calculateTotalPrice(basket);
         assertThat(total, is(0));
     }
 }
